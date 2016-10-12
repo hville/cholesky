@@ -1,0 +1,28 @@
+{
+  "name": "cholesky",
+  "version": "1.0.0",
+  "description": "matrix LDL decomposition. Returns the lower triangular Matrix",
+  "keywords": [
+    "LLt", "LDL", "cholesky", "matrix"
+  ],
+  "author": "Hugo Villeneuve",
+  "main": "./cholesky.js",
+  "private": false,
+  "dependencies": {},
+  "devDependencies": {
+    "cotest": "^1.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hville/cholesky.git"
+  },
+  "scripts": {
+    "test": "node test",
+    "prepublish": "npm test"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
+}
+

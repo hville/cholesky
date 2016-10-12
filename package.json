@@ -1,7 +1,7 @@
 {
   "name": "cholesky",
   "version": "1.0.0",
-  "description": "matrix LDL decomposition. Returns the lower triangular Matrix",
+  "description": "standalone cholesky decomposition of a square matrix",
   "keywords": [
     "LLt", "LDL", "cholesky", "matrix"
   ],

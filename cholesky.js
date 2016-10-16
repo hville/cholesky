@@ -14,9 +14,9 @@ function cholesky(matrix) {
 	var len = matrix.length,
 			res = Array(len)
 	if (matrix.length !== matrix[0].length) throw Error('Input matrix must be square')
-	for (var k = 0; k<len; ++k) res[k] = Array(k+1) // lower triangle
 
-	res[0][0] = Math.sqrt( matrix[0][0] )
+	res[0] = [Math.sqrt( matrix[0][0] )]
+	for (var k = 1; k<len; ++k) res[k] = Array(k+1) // lower triangle
 
 	for (var i = 1; i<len; ++i) {
 		for (var j = 0; j < i; ++j) {

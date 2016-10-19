@@ -13,7 +13,7 @@ module.exports = cholesky
 function cholesky(matrix) {
 	var len = matrix.length,
 			res = Array(len)
-	if (matrix.length !== matrix[0].length) throw Error('Input matrix must be square')
+	if (matrix.length !== matrix[len-1].length) throw Error('Input matrix must be square or lower triangle')
 
 	res[0] = [Math.sqrt( matrix[0][0] )]
 	for (var k = 1; k<len; ++k) res[k] = Array(k+1) // lower triangle

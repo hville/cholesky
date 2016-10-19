@@ -50,9 +50,9 @@ var goodMatrix = [
 	[[4,12,-16],[12,37,-43],[-16,-43,98]]
 ]
 var evilMatrix = [
-	rndM(5,0.6,0.2),
-	rndM(5,0.6,0.2),
-	rndM(5,0.6,0.2)
+	rndM(10,0.3,0.1),
+	rndM(15,0.3,0),
+	rndM(20,0.3,0)
 ]
 
 var ref = res = sumref = sumres = {ms:0, er:0}
@@ -73,7 +73,7 @@ evilMatrix.forEach(function(m,i) {
 	t('Test #'+(i+goodMatrix.length), () => {
 		ref = testbench(ldl, m)
 		res = testbench(cholesky, m)
-		t('<=', res.er, 1, 'error outliers')
+		t('<=', res.er, 0.001, 'error outliers')
 		sumref.er += ref.er
 		sumref.ms += ref.ms
 		sumres.er += res.er
@@ -82,6 +82,6 @@ evilMatrix.forEach(function(m,i) {
 })
 t('Summary', () => {
 	t('<=', sumres.er, sumref.er, 'better error over LDL')
-	t('<=', sumres.er, 10, 'error outliers')
+	t('<=', sumres.er, 1, 'error outliers')
 	t('<=', sumres.ms, sumref.ms, 'better performance over LDL')
 })

@@ -1,13 +1,18 @@
 var t = require('cotest'),
-		cholesky = require('./cholesky'),
+		cholesky = require('./'),
 		ldl = require('./ldl')
 
 //mult of square matrix or triangular matrix for testing
+
+/**
+ * @param {Array<Array<number>>} L
+ * @return {Array<Array<number>>}
+ */
 function msq(L) {
 	var dim = L.length,
-			res = []
+			res = Array(dim)
 	for (var i=0; i<dim; ++i) {
-		res[i] = []
+		res[i] = Array(dim)
 		for (var j=0; j<dim; ++j) {
 			res[i][j] = 0
 			for (var k=0; k<dim; ++k) res[i][j] += L[i][k] * L[j][k] || 0
@@ -16,7 +21,7 @@ function msq(L) {
 	return res
 }
 function rndM(dim, scale, shift) { //random symetrical matrix
-	var res = []
+	var res = Array(dim)
 	for (var i=0; i<dim; ++i) {
 		res[i] = []
 		for (var j=0; j<i; ++j) res[i][j] = res[j][i] = Math.random() * scale + shift
@@ -34,6 +39,7 @@ function err2M(res, ref) {
 	}
 	return err2
 }
+
 function testbench(fcn, src) {
 	var st = process.hrtime(),
 			low = fcn(src),
@@ -49,13 +55,17 @@ var goodMatrix = [
 	[[0.81, -0.36, 0.25],	[-0.36, 0.49, 0.16], [0.25, 0.16, 0.64]],
 	[[4,12,-16],[12,37,-43],[-16,-43,98]]
 ]
+
 var evilMatrix = [
 	rndM(10,0.3,0.1),
 	rndM(15,0.3,0),
 	rndM(20,0.3,0)
 ]
 
-var ref = res = sumref = sumres = {ms:0, er:0}
+var ref = {ms:0, er:0},
+		res = ref,
+		sumref = ref,
+		sumres = ref
 
 goodMatrix.forEach(function(m,i) {
 	t('Test #'+i, () => {
